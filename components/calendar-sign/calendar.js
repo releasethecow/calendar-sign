@@ -6,9 +6,16 @@ var calUtil = {
   // default day
   showDays:1,
   eventName:"load",
+  calendarID: "",
   signList: [],
   // init calendar
-  init:function(signList){
+  init:function(id, signList){
+    // return when no id
+    if (id == undefined) {
+      console.error('[init] id is required');
+      return;
+    }
+    calUtil.calendarID = id;
     calUtil.setMonthAndDay();
     calUtil.draw(signList);
     calUtil.bindEnvent();
@@ -18,7 +25,7 @@ var calUtil = {
     // calendar body
     calUtil.signList=signList || [];
     var str = calUtil.drawCal(calUtil.showYear,calUtil.showMonth,signList);
-    $("#calendar").html(str);
+    $("#"+calUtil.calendarID).html(str);
     // calendar header
     var calendarName=calUtil.showYear+"年"+calUtil.showMonth+"月";
     $(".calendar_month_span").html(calendarName);  
@@ -167,8 +174,6 @@ var calUtil = {
     for (d = 0; d < 7; d++) {
      var ifSigned = calUtil.ifSigned(signList, myMonth[w][d], iMonth, iYear);
      var ifToday = calUtil.ifToday(myMonth[w][d], iMonth, iYear);
-     console.log(">>",ifToday);
-     console.log(ifSigned);
      var tdClass = "";
      if(ifToday) {
       tdClass+="today ";
