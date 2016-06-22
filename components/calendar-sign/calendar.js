@@ -37,14 +37,14 @@ var calUtil = {
       // xxx: you could get data by ajax
       var signList=calUtil.signList;
       calUtil.eventName="prev";
-      calUtil.init(signList);
+      calUtil.init(calUtil.calendarID, signList);
     });
     // nex month
     $(".calendar_month_next").click(function(){
       // xxx: you could get data by ajax
       var signList=calUtil.signList;
       calUtil.eventName="next";
-      calUtil.init(signList);
+      calUtil.init(calUtil.calendarID, signList);
     });
   },
   // set current date
