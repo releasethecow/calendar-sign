@@ -6,18 +6,34 @@ var calUtil = {
   // default day
   showDays:1,
   eventName:"load",
-  calendarID: "",
+  // dom ID
+  calendarId: "",
+  // sign list data: Array of {signDate: "xxx"}
   signList: [],
+  // disable pre button
+  disablePrev: false,
+  // disable next button
+  disableNext: false,
   // init calendar
-  init:function(id, signList){
+  init:function(json){
+    if (json) {
+      var id = json.id;
+      var signList = json.signList;
+      var disableNext = json.disableNext;
+      var disablePrev = json.disablePrev;
+
+      if (id) calUtil.calendarId = id;
+      if (signList) calUtil.signList = signList;
+      if (disableNext === true || disableNext === false) calUtil.disableNext = disableNext;
+      if (disablePrev === true || disablePrev === false) calUtil.disablePrev = disablePrev;
+    }
     // return when no id
-    if (id == undefined) {
+    if (calUtil.calendarId == undefined) {
       console.error('[init] id is required');
       return;
     }
-    calUtil.calendarID = id;
     calUtil.setMonthAndDay();
-    calUtil.draw(signList);
+    calUtil.draw(calUtil.signList);
     calUtil.bindEnvent();
   },
   // render calendar
@@ -25,7 +41,7 @@ var calUtil = {
     // calendar body
     calUtil.signList=signList || [];
     var str = calUtil.drawCal(calUtil.showYear,calUtil.showMonth,signList);
-    $("#"+calUtil.calendarID).html(str);
+    $("#"+calUtil.calendarId).html(str);
     // calendar header
     var calendarName=calUtil.showYear+"年"+calUtil.showMonth+"月";
     $(".calendar_month_span").html(calendarName);  
@@ -37,14 +53,14 @@ var calUtil = {
       // xxx: you could get data by ajax
       var signList=calUtil.signList;
       calUtil.eventName="prev";
-      calUtil.init(calUtil.calendarID, signList);
+      calUtil.init();
     });
     // nex month
     $(".calendar_month_next").click(function(){
       // xxx: you could get data by ajax
       var signList=calUtil.signList;
       calUtil.eventName="next";
-      calUtil.init(calUtil.calendarID, signList);
+      calUtil.init();
     });
   },
   // set current date
@@ -57,6 +73,9 @@ var calUtil = {
         calUtil.showMonth=current.getMonth() + 1;
         break;
       case "prev":
+        if (calUtil.disablePrev) {
+          return;
+        }
         var nowMonth=$(".calendar_month_span").html().split("年")[1].split("月")[0];
         calUtil.showMonth=parseInt(nowMonth)-1;
         if(calUtil.showMonth==0)
@@ -66,6 +85,9 @@ var calUtil = {
         }
         break;
       case "next":
+        if (calUtil.disableNext) {
+          return;
+        }
         var nowMonth=$(".calendar_month_span").html().split("年")[1].split("月")[0];
         calUtil.showMonth=parseInt(nowMonth)+1;
         if(calUtil.showMonth==13)
@@ -150,11 +172,13 @@ var calUtil = {
   // draw calendar
   drawCal : function(iYear, iMonth ,signList) {
    var myMonth = calUtil.bulidCal(iYear, iMonth);
+    var classPrev = calUtil.disablePrev?'calendar_month_prev disable':'calendar_month_prev';
+    var classNext = calUtil.disableNext?'calendar_month_next disable':'calendar_month_next';
    var htmls = new Array();
    htmls.push("<div class='sign_main' id='sign_layer'>");
    htmls.push("<div class='sign_succ_calendar_title'>");
-   htmls.push("<div class='calendar_month_next'>下月</div>");
-   htmls.push("<div class='calendar_month_prev'>上月</div>");
+   htmls.push("<div class='"+classNext+"'>下月</div>");
+   htmls.push("<div class='"+classPrev+"'>上月</div>");
    htmls.push("<div class='calendar_month_span'></div>");
    htmls.push("</div>");
    htmls.push("<div class='sign' id='sign_cal'>");
@@ -191,5 +215,23 @@ var calUtil = {
    htmls.push("</div>");
    htmls.push("</div>");
    return htmls.join('');
+  },
+  // set disable pre button
+  setdisablePrev: function (flag) {
+    calUtil.disablePrev = flag;
+    if (flag){
+      $(".calendar_month_prev").removeClass('disable')
+    } else {
+      $(".calendar_month_prev").addClass('disable')
+    }
+  },
+  // set disable next button
+  setdisablePrev: function (flag) {
+    calUtil.disableNext = flag;
+    if (flag){
+      $(".calendar_month_next").removeClass('disable')
+    } else {
+      $(".calendar_month_next").addClass('disable')
+    }
   }
 };

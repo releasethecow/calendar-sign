@@ -24,7 +24,12 @@ $(function(){
     {"signDate":"2016-06-19"},
     {"signDate":1465948800000}
   ];
-  calUtil.init("calendar", signList);
+  calUtil.init({
+    id: "calendar"
+    ,signList: signList
+//    ,disablePrev:true
+//    ,disableNext:false
+  });
 });
 </script>
 
