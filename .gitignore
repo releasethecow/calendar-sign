@@ -1,0 +1,11 @@
+.idea
+node_modules
+.DS_Store
+*.bak
+*.tmp
+*.log
+Thumbs.db
+.project
+.iml
+process.dev.json
+process.prod.json
