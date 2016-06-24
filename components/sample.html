@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>签到效果实现</title>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<script type="text/javascript" src="lib/zepto.js"></script>
+	<script type="text/javascript" src="calendar-sign/calendar.js"></script>
+	<link rel="stylesheet" type="text/css" href="calendar-sign/sample.css"/>
+	
+</head>
+<body>
+<div style="width:100%;height:400px;" id="calendar"></div>
+
+<script type="text/javascript">
+$(function(){
+  //ajax获取日历json数据
+  var signList=[
+    {"signDate":"Wed Jul 01 2016 11:47:33 GMT+0800 (CST)"},
+    {"signDate":"Wed Jun 22 2016 11:47:33 GMT+0800 (CST)"},
+    {"signDate":"Wed Jun 22 2016 11:47:33 GMT+0800 (CST)"},
+    {"signDate":"Wed Jun 21 2016 11:47:33 GMT+0800 (CST)"},
+    {"signDate":"Wed Jun 20 2016 11:47:33 GMT+0800 (CST)"},
+    {"signDate":"2016-06-19"},
+    {"signDate":1465948800000},
+    {"signDate":new Date()}
+  ];
+  calUtil.init({
+    id: "calendar"
+    ,signList: signList
+//    ,disablePrev:true
+//    ,disableNext:false
+  });
+});
+</script>
+
+</body>
+</html>

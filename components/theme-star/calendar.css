@@ -1,0 +1,121 @@
+body, html, div, ul, ol, li, p {
+    margin: 0;
+    padding: 0;
+}
+.sign_main {
+    padding-bottom: 13px;
+}
+.sign_succ_calendar_title {
+    text-align: center;
+    height: 60px;
+    line-height: 60px;
+    position: relative;
+    color: #f67b29;
+    font-size: 16px;
+}
+
+.sign_succ_calendar_title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    -webkit-transform: scale(1, 0.5);
+    transform: scale(1, 0.5);
+    border-bottom: 1px solid #EBEBEB;
+}
+
+.calendar_month_next, .calendar_month_prev {
+    background-image: url("images/icon.png");
+    background-size: 20px auto;
+    -webkit-background-size: 20px auto;
+    width: 9px;
+    height: 16px;
+    line-height: 9000;
+    overflow: hidden;
+    position: absolute;
+    top: 22px;
+}
+
+.calendar_month_next {
+    background-position: -10px 0;
+    margin-right: -73px;
+    right: 50%;
+}
+
+.calendar_month_prev {
+    background-position: 0 0;
+    margin-left: -73px;
+    left: 50%;
+}
+
+.calendar_month_next.disable {
+    background-position: -10px -20px;
+}
+
+.calendar_month_prev.disable {
+    background-position: 0 -20px;
+}
+
+/* table style */
+.sign table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+}
+.sign th {
+    height: 30px;
+    color: #999;
+    font-size: 12px;
+    font-weight: normal;
+}
+.sign td {
+    height: 0;
+}
+
+.sign td.number {
+    height: 45px;
+    text-align: center;
+    line-height: 45px;
+    font-size: 16px;
+    color: #333;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url("images/icon_sign_dis.png");
+    background-size: 40px auto;
+    -webkit-background-size: 40px auto;
+}
+.sign td.number:hover {
+     background-color: #f3f3f4;
+     border-radius: 5px;
+ }
+.sign td.on {
+    background-image: url("images/icon_sign.png");
+    background-size: 40px auto;
+    -webkit-background-size: 40px auto;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.sign td.today {
+    position: relative;
+    color: #FFF;
+}
+.sign td.today:hover {
+    background-color: #f8ac59;
+    border-radius: 5px;
+}
+.sign td.today::after {
+    display: inline-block;
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    background-image: url("images/icon_curr.png");
+    background-size: 30px auto;
+    -webkit-background-size: 30px auto;
+    background-position: center;
+    background-repeat: no-repeat;
+}
