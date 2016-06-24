@@ -1,3 +1,7 @@
+/**
+ * QB
+ * simple sign calendar
+ */
 var calUtil = {
   // default year
   showYear:2016,
@@ -193,12 +197,17 @@ var calUtil = {
     htmls.push("<th>" + myMonth[0][6] + "</th>");
     htmls.push("</tr>");
     var d, w;
+    var empty = " ";
     for (w = 1; w < 7; w++) {
       htmls.push("<tr>");
       for (d = 0; d < 7; d++) {
         var ifSigned = calUtil.ifSigned(signList, myMonth[w][d], iMonth, iYear);
         var ifToday = calUtil.ifToday(myMonth[w][d], iMonth, iYear);
+        var cell = (!isNaN(myMonth[w][d]) ? myMonth[w][d] : empty);
         var tdClass = "";
+        if(cell != empty) {
+          tdClass+="number ";
+        }
         if(ifToday) {
           tdClass+="today ";
         }
@@ -207,7 +216,7 @@ var calUtil = {
         } else {
           //
         }
-        htmls.push("<td class='"+tdClass+"'>" + (!isNaN(myMonth[w][d]) ? myMonth[w][d] : " ") + "</td>");
+        htmls.push("<td class='"+tdClass+"'>" + cell + "</td>");
       }
       htmls.push("</tr>");
     }
