@@ -216,7 +216,7 @@ var calUtil = {
         } else {
           //
         }
-        htmls.push("<td class='"+tdClass+"'>" + cell + "</td>");
+        htmls.push("<td class='"+tdClass+"'>" + cell + "<span class='bg'></span></td>");
       }
       htmls.push("</tr>");
     }

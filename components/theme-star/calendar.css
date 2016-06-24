@@ -79,43 +79,64 @@ body, html, div, ul, ol, li, p {
     line-height: 45px;
     font-size: 16px;
     color: #333;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-image: url("images/icon_sign_dis.png");
-    background-size: 40px auto;
-    -webkit-background-size: 40px auto;
+    position: relative;
 }
 .sign td.number:hover {
-     background-color: #f3f3f4;
-     border-radius: 5px;
- }
-.sign td.on {
-    background-image: url("images/icon_sign.png");
-    background-size: 40px auto;
-    -webkit-background-size: 40px auto;
+    background-color: #f3f3f4;
+    border-radius: 5px;
+}
+.sign td.number::after {
+    display: inline-block;
+    content: "";
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    margin: 1px 0 0 6px;
+    background-image: url("images/icon_sign_dis.png");
+    background-size: 15px auto;
+    -webkit-background-size: 15px auto;
     background-position: center;
     background-repeat: no-repeat;
 }
-.sign td.today {
+
+.sign td .text {
     position: relative;
-    color: #FFF;
+    z-index: 5;
 }
-.sign td.today:hover {
-    background-color: #f8ac59;
-    border-radius: 5px;
+
+.sign td .bg {
+    display: none;
 }
-.sign td.today::after {
+
+.sign td.on .bg {
     display: inline-block;
     content: "";
-    width: 100%;
-    height: 100%;
+    width: 20px;
+    height: 17px;
     position: absolute;
-    left: 0;
-    top: 0;
-    z-index: -1;
+    left: 50%;
+    top: 50%;
+    z-index: 2;
+    margin: 1px 0 0 6px;
+    background-image: url("images/icon_sign.png");
+    background-size: 15px auto;
+    -webkit-background-size: 15px auto;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.sign td.today {
+    color: #FFF;
     background-image: url("images/icon_curr.png");
     background-size: 30px auto;
     -webkit-background-size: 30px auto;
     background-position: center;
     background-repeat: no-repeat;
+}
+.sign td.today:hover {
+    background-color: #f8ac59;
+    border-radius: 5px;
 }
